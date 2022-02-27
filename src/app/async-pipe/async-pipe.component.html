@@ -1,0 +1,47 @@
+<section id="ap-section" class="detail-page">
+  <app-header></app-header>
+  <main>
+    <h1 class="title">Async Pipe need to SUBSCRIBE A Variable</h1>
+    <p>
+      Getter with delay operator =>
+      <span class="highlight">
+        {{ (Data1 | async) || 'no-data' }}
+      </span>
+    </p>
+    <p>
+      Getter without delay operator =>
+      <span class="highlight">
+        {{ (Data2 | async) || 'no-data' }}
+      </span>
+    </p>
+    <p>
+      A Property assigned string in Observer with delay operator =>
+      <span class="highlight">
+        {{ Data3 || 'no-data' }}
+      </span>
+    </p>
+    <p>
+      A Property assigned Observable&lt;string&gt; with delay operator =>
+      <span class="highlight">
+        {{ (Data4 | async) || 'no-data' }}
+      </span>
+    </p>
+    <p>
+      A Function returns Observable&lt;string&gt; with delay & concatMap operator =>
+      <span class="highlight">
+        {{ (getData5() | async) || 'no-data' }}
+      </span>
+    </p>
+    <hr />
+    <p>
+      You need a single Observable instance. The async pipe keeps a reference to the observable
+      and subscribes to it. When you use the getData function call, a new observable is created
+      each time there's a change detection, and so the async pipe subscribes to the new
+      observable and doesn't wait for the previous one anymore.
+    </p>
+    <!-- References:
+      https://stackoverflow.com/questions/67868459/why-is-the-angular-11-async-pipe-not-stabilizing-with-a-delayed-observable
+      https://stackoverflow.com/questions/68805848/angular-async-pipe-and-the-delay-operator
+    -->
+  </main>
+</section>
